@@ -1,20 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from "./src/Screens/Auth/LoginScreen";
+import AdminDashboard from "./src/Screens/Admin/AdminDashboard";
+import KasirDashboard from "./src/Screens/Kasir/KasirDashboard";
+import TeknisiDashboard from "./src/Screens/Teknisi/TeknisiDashboard";
+import PelangganDashboard from "./src/Screens/Pelanggan/PelangganDashboard";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerStyle: { backgroundColor: "#1E1E1E" },
+          headerTintColor: "#FFFFFF",
+          headerTitleStyle: { fontWeight: "bold" },
+          cardStyle: { backgroundColor: "#1E1E1E" },
+        }}
+      >
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AdminDashboard"
+          component={AdminDashboard}
+          options={{ title: "Admin Dashboard" }}
+        />
+        <Stack.Screen
+          name="KasirDashboard"
+          component={KasirDashboard}
+          options={{ title: "Kasir Dashboard" }}
+        />
+        <Stack.Screen
+          name="TeknisiDashboard"
+          component={TeknisiDashboard}
+          options={{ title: "Teknisi Dashboard" }}
+        />
+        <Stack.Screen
+          name="PelangganDashboard"
+          component={PelangganDashboard}
+          options={{ title: "Pelanggan Dashboard" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
