@@ -6,10 +6,24 @@ import AdminDashboard from "./src/Screens/Admin/AdminDashboard";
 import KasirDashboard from "./src/Screens/Kasir/KasirDashboard";
 import TeknisiDashboard from "./src/Screens/Teknisi/TeknisiDashboard";
 import PelangganDashboard from "./src/Screens/Pelanggan/PelangganDashboard";
+import TransaksiBaru from "./src/Screens/Kasir/TransaksiBaru";
+import ListTransaksi from "./src/Screens/Kasir/ListTransasksi";
+import DetailTransaksi from "./src/Screens/Kasir/DetailTransaksi";
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  React.useEffect(() => {
+    checkLogin();
+  }, []);
+
+  const checkLogin = async () => {
+    const token = await AsyncStorage.getItem("userToken");
+    const role = await AsyncStorage.getItem("userRole");
+    if (token && role) {
+      navigation.replace("KasirDashboard");
+    }
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -35,6 +49,21 @@ export default function App() {
           name="KasirDashboard"
           component={KasirDashboard}
           options={{ title: "Kasir Dashboard" }}
+        />
+        <Stack.Screen
+          name="TransaksiBaru"
+          component={TransaksiBaru}
+          options={{ title: "Transaksi Baru" }}
+        />
+        <Stack.Screen
+          name="ListTransaksi"
+          component={ListTransaksi}
+          options={{ title: "List Transaksi" }}
+        />
+        <Stack.Screen
+          name="DetailTransaksi"
+          component={DetailTransaksi}
+          options={{ title: "Detail Transaksi" }}
         />
         <Stack.Screen
           name="TeknisiDashboard"

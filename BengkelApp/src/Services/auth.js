@@ -1,11 +1,11 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const BASE_URL = "http://localhost:8001/api/auth";
+const BASE_URL = "http://localhost:8001/api";
 
 export const login = async (email, password) => {
   try {
-    const response = await axios.post(`${BASE_URL}/login`, {
+    const response = await axios.post(`${BASE_URL}/auth/login`, {
       email,
       password,
     });
@@ -32,4 +32,54 @@ export const login = async (email, password) => {
 export const logout = async () => {
   await AsyncStorage.removeItem("userToken");
   await AsyncStorage.removeItem("userRole");
+};
+
+export const getPerbaikan = async () => {
+  const token = await AsyncStorage.getItem("userToken");
+  const response = await axios.get(`${BASE_URL}/transaksi/get_perbaikan`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export const createTransaksi = async (data) => {
+  const token = await AsyncStorage.getItem("userToken");
+  const response = await axios.post(
+    `${BASE_URL}/transaksi/create_transaksi`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
+};
+
+export const getTransaksi = async (filter) => {
+  const token = await AsyncStorage.getItem("userToken");
+  const response = await axios.get(
+    `${BASE_URL}/transaksi/get_transaksi/` + filter,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
+};
+
+export const getTransaksiDetail = async (id) => {
+  const token = await AsyncStorage.getItem("userToken");
+  const response = await axios.get(
+    `${BASE_URL}/transaksi/get_detail_transaksi/` + id,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
 };

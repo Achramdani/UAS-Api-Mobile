@@ -29,7 +29,7 @@ const KasirDashboard = ({ navigation }) => {
     },
     {
       title: "Riwayat Transaksi",
-      screen: "RiwayatTransaksi",
+      screen: "ListTransaksi",
       icon: <Receipt color={darkTheme.colors.text} size={24} />,
     },
   ];

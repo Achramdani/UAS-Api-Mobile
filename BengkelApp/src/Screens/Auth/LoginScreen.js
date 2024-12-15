@@ -9,22 +9,21 @@ import {
   StatusBar,
 } from "react-native";
 import darkTheme from "../../Theme/darkTheme";
+import { login } from "../../Services/auth";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    // Logic login akan ditambahkan kemudian
-    // Sementara ini hanya navigasi berdasarkan role
-    if (email === "admin@bengkel.com") {
-      navigation.navigate("AdminDashboard");
-    } else if (email === "kasir@bengkel.com") {
-      navigation.navigate("KasirDashboard");
-    } else if (email === "teknisi@bengkel.com") {
-      navigation.navigate("TeknisiDashboard");
-    } else if (email === "pelanggan@bengkel.com") {
-      navigation.navigate("PelangganDashboard");
+  const handleLogin = async () => {
+    try {
+      let response = await login(email, password);
+
+      if (response.success) {
+        navigation.replace("KasirDashboard");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
