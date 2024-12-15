@@ -82,7 +82,9 @@ const ListTransaksi = ({ navigation }) => {
               { backgroundColor: getStatusColor(item.status) },
             ]}
           >
-            <Text style={styles.statusText}>{item.status}</Text>
+            <Text style={styles.statusText}>
+              {item.status === 1 ? "Sudah Bayar" : "Belum Bayar"}
+            </Text>
           </View>
         </View>
         <Text style={styles.pelangganText}>

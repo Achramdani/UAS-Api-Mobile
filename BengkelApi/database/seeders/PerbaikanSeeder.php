@@ -33,7 +33,7 @@ class PerbaikanSeeder extends Seeder
 
         $service_berat = Perbaikan::create([
             'user_id' => 2,
-            'kode' => 'SR-001',
+            'kode' => 'SR-002',
         ]);
 
         $service_berat->part_perbaikans()->create([
