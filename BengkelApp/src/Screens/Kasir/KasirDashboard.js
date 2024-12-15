@@ -17,16 +17,16 @@ const KasirDashboard = ({ navigation }) => {
       screen: "TransaksiBaru",
       icon: <CreditCard color={darkTheme.colors.text} size={24} />,
     },
-    {
-      title: "Generate QR Code",
-      screen: "GenerateQR",
-      icon: <QrCode color={darkTheme.colors.text} size={24} />,
-    },
-    {
-      title: "Cetak Kuitansi",
-      screen: "CetakKuitansi",
-      icon: <Printer color={darkTheme.colors.text} size={24} />,
-    },
+    // {
+    //   title: "Generate QR Code",
+    //   screen: "GenerateQR",
+    //   icon: <QrCode color={darkTheme.colors.text} size={24} />,
+    // },
+    // {
+    //   title: "Cetak Kuitansi",
+    //   screen: "CetakKuitansi",
+    //   icon: <Printer color={darkTheme.colors.text} size={24} />,
+    // },
     {
       title: "Riwayat Transaksi",
       screen: "ListTransaksi",

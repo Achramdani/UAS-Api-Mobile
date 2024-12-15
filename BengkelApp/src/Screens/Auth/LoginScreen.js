@@ -21,6 +21,8 @@ const LoginScreen = ({ navigation }) => {
 
       if (response.success) {
         navigation.replace("KasirDashboard");
+      } else {
+        alert(response.message);
       }
     } catch (error) {
       console.log(error);
